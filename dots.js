@@ -4,22 +4,24 @@ var clear = function() {
 
 var add_dot = function(e) {
   console.log(e);
-  if (lastX) { //if a dot has been drawn before
-    var line = document.createElementNS(NS, "line");
-    line.setAttribute("x1", e.offsetX);
-    line.setAttribute("y1", e.offsetY);
-    line.setAttribute("x2", lastX);
-    line.setAttribute("x2", lastY);
-    slate.appendChild(line);
-  }
-  lastX = e.offsetX;
-  lastY = e.offsetY;
   var dot = document.createElementNS(NS, "circle");
   dot.setAttribute("cx", e.offsetX);
   dot.setAttribute("cy", e.offsetY);
   dot.setAttribute("r", 20);
   dot.setAttribute("fill", "lightsteelblue");
   slate.appendChild(dot);
+  if (lastX) { //if a dot has been drawn before
+    var line = document.createElementNS(NS, "line");
+    line.setAttribute("x1", e.offsetX);
+    line.setAttribute("y1", e.offsetY);
+    line.setAttribute("x2", lastX);
+    line.setAttribute("y2", lastY);
+    line.setAttribute("stroke", "black");
+    slate.appendChild(line);
+    console.log("I WENT");
+  }
+  lastX = e.offsetX;
+  lastY = e.offsetY;
 };
 
 var lastX = null;
